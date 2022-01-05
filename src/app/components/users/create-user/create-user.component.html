@@ -1,0 +1,111 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card tab2-card">
+                <div class="card-header">
+                    <h5>Add User</h5>
+                </div>
+                <div class="card-body tab2-card">
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
+                        <h4>Account Details</h4>
+
+
+                        <div class="form-group row">
+                            <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>First
+                                Name</label>
+                            <input class="form-control col-xl-8 col-md-7" type="text" formControlName="FirstName"
+                                [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }">
+                            <div class="col-xl-3 col-md-4"></div>
+                            <div *ngIf="submitted && f.FirstName.errors" class="col-xl-3 col-md-4 invalid-feedback">
+                                <div *ngIf="f.FirstName.errors.required">First Name is required
+                                </div>
+                                <div *ngIf="f.FirstName.errors.minlength">Min length is 3</div>
+                                <div *ngIf="f.FirstName.errors.maxlength">Max length is 15</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="validationCustom1" class="col-xl-3 col-md-4"><span>*</span>
+                                Last
+                                Name</label>
+                            <input class="form-control col-xl-8 col-md-7" type="text" formControlName="LastName"
+                                [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }">
+                            <div class="col-xl-3 col-md-4"></div>
+                            <div *ngIf="submitted && f.LastName.errors" class="col-xl-3 col-md-4 invalid-feedback">
+                                <div *ngIf="f.LastName.errors.required">Last Name is required</div>
+                                <div *ngIf="f.LastName.errors.minlength">Min length is 3</div>
+                                <div *ngIf="f.LastName.errors.maxlength">Max length is 15</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="validationCustom2" class="col-xl-3 col-md-4">
+                                <span>*</span>Email</label>
+                            <input class="form-control col-xl-8 col-md-7" type="email" formControlName="Email"
+                                [ngClass]="{ 'is-invalid': submitted && f.Email.errors }">
+                            <div class="col-xl-3 col-md-4"></div>
+                            <div *ngIf="submitted && f.Email.errors" class="col-xl-3 col-md-4 invalid-feedback">
+                                <div *ngIf="f.Email.errors.required">Email is required</div>
+                                <div *ngIf="f.Email.errors.pattern">Email must be a valid email
+                                    address
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="validationCustom2" class="col-xl-3 col-md-4">
+                                <span>*</span>User Type</label>
+                            <select class="form-control col-xl-8 col-md-7" formControlName="userTypeId"
+                                [ngClass]="{ 'is-invalid': submitted && f.userTypeId.errors }">
+                                <option value="">--Select--</option>
+                                <option *ngFor="let type of objUserTypes" [value]="type.id">{{type.name}}</option>
+                            </select>
+                            <div class="col-xl-3 col-md-4"></div>
+                            <div *ngIf="submitted && f.userTypeId.errors" class="col-xl-3 col-md-4 invalid-feedback">
+                                <div *ngIf="f.userTypeId.errors.required">User Type is required</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="validationCustom3" class="col-xl-3 col-md-4">
+                                <span>*</span>Password</label>
+                            <input class="form-control col-xl-8 col-md-7" type="password" formControlName="password"
+                                [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                            <div class="col-xl-3 col-md-4"></div>
+                            <div class="col-xl-8 col-md-7" *ngIf="submitted && f.password.errors"
+                                class="col-xl-3 col-md-4 invalid-feedback">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                                <div *ngIf="f.password.errors.pattern">Password must be atleast 8
+                                    characters long, contain Lowercase letters,
+                                    Uppercase letters, Numbers and Special characters.</div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="validationCustom4" class="col-xl-3 col-md-4"><span>*</span>Confirm
+                                Password</label>
+                            <input class="form-control col-xl-8 col-md-7" type="password" formControlName="confirmPassword"
+                                [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+                            <div class="col-xl-3 col-md-4"></div>
+                            <div class="col-xl-8 col-md-7" *ngIf="submitted && f.confirmPassword.errors"
+                                class="col-xl-3 col-md-4 invalid-feedback">
+                                <div *ngIf="f.confirmPassword.errors.required">Confirm Password is
+                                    required</div>
+                                <div *ngIf="f.confirmPassword.errors.mustMatch">Confirm Password
+                                    must match with Password
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-button">
+                            <button class="btn btn-primary" type="submit">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

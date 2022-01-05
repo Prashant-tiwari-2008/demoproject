@@ -1,0 +1,91 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <h5>Color</h5>
+        </div>
+        <div class="card-body tab2-card">
+            <ngb-tabset class="tab-coupon" activeId="Viewtab" #tabset="ngbTabset" (tabChange)="onTabChange($event)">
+                <!--Add Start-->
+                <ngb-tab title="Add" id="Addtab">
+                    <ng-template ngbTabContent>
+                        <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group row">
+                                <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span> Name</label>
+                                <input class="form-control col-xl-8 col-md-7" type="text" formControlName="name">
+                                <div class="col-xl-3 col-md-4"></div>
+                                <div class="col-xl-8 col-md-7" *ngIf="f['name'].touched && !f['name'].valid">
+                                    <span style="color:#dc3545 !important" *ngIf="f['name'].hasError('required')">
+                                        {{validationMessage.name.required }} </span>
+                                    <div class="text-danger" *ngIf="formErrors.name">{{formErrors.name}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span> Code</label>
+                                <input class="form-control col-xl-8 col-md-7" type="text" formControlName="code">
+                                <div class="col-xl-3 col-md-4"></div>
+                                <div class="col-xl-8 col-md-7" *ngIf="f['code'].touched && !f['code'].valid">
+                                    <span style="color:#dc3545 !important" *ngIf="f['code'].hasError('required')">
+                                        {{validationMessage.code.required }} </span>
+                                    <div class="text-danger" *ngIf="formErrors.code">{{formErrors.code}}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-primary"
+                                    [disabled]="addForm.invalid">{{buttonText}}</button>
+                            </div>
+
+                            <div class="pull-right mr-2">
+                                <button type="submit" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
+                            </div>
+                        </form>
+                    </ng-template>
+                </ngb-tab>
+                <!--Add End-->
+                <ngb-tab title="View" id="Viewtab">
+                    <ng-template ngbTabContent>
+                        <!--View Start-->
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="custom-datatable">
+                                                <ngx-datatable class="bootstrap" [rows]="objRows" [columnMode]="'force'"
+                                                    [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
+                                                    [limit]="5"  (sort)="onSort($event)" (page)="setPage($event)" >
+
+                                                    <ngx-datatable-column class="bootstrap" name="Name">
+                                                    </ngx-datatable-column>
+                                                    <ngx-datatable-column class="bootstrap" name="Code">
+                                                    </ngx-datatable-column>
+                                                    <ngx-datatable-column class="bootstrap" name="CreatedOn">
+                                                    </ngx-datatable-column>
+
+                                                    <ngx-datatable-column class="bootstrap" name="Action"
+                                                        sortable="false" prop="id">
+                                                        <ng-template let-row="row" let-value="value"
+                                                            ngx-datatable-cell-template>
+                                                            <button type="button" (click)="Edit(value)"><i class="fa fa-edit"></i></button>
+                                                            <button type="button" (click)="Delete(value)"><i class="fa fa-trash-o"></i></button>
+                                                        </ng-template>
+                                                    </ngx-datatable-column>
+                                                </ngx-datatable>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--View End-->
+                    </ng-template>
+                </ngb-tab>
+
+            </ngb-tabset>
+        </div>
+    </div>
+</div>

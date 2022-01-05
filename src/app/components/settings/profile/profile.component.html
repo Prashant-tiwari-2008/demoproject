@@ -1,0 +1,65 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="profile-details text-center">
+                        <img [src]="imagePath" alt="User Image"
+                            class="img-fluid img-90 rounded-circle blur-up lazyloaded">
+                        <h5 class="f-w-600 mb-0">{{fullName}}</h5>
+                        <span>{{emailId}}</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <div class="card tab2-card">
+                <div class="card-body">
+                    <ngb-tabset class="tab-coupon profile-tabs" activeId="Viewtab" #tabset="ngbTabset" >
+                        <ngb-tab id="Viewtab" >
+                            <ng-template ngbTabTitle>
+                                <app-feather-icon icon="user"></app-feather-icon>Profile
+                            </ng-template>
+                            <ng-template ngbTabContent>
+                                <div class="tab-pane fade show active" id="top-profile" role="tabpanel"
+                                    aria-labelledby="top-profile-tab">
+                                    <h5 class="f-w-600"> Profile</h5>
+                                    <div class="table-responsive profile-table">
+                                        <table class="table table-responsive">
+                                            <tbody>
+                                                <tr>
+                                                    <td>First Name:</td>
+                                                    <td>{{firstName}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Last Name:</td>
+                                                    <td>{{lastName}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Email:</td>
+                                                    <td>{{emailId}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab id="Addtab" >
+                            <ng-template ngbTabTitle>
+                                <app-feather-icon icon="user"></app-feather-icon>Edit Profile
+                            </ng-template>
+                            <ng-template ngbTabContent>
+                                <input class="form-control col-xl-8 col-md-7" type="file" #file
+                                (change)="upload(file.files)">
+                                <button type="submit" class="btn btn-primary" (click)="onSubmit()"
+                               >Update</button>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
